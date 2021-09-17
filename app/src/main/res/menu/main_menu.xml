@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_menu_sort_magnitude"
+        android:title="@string/sort_by_magnitude"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_sync_problem_black"/>
+
+    <item
+        android:id="@+id/main_menu_sort_time"
+        android:title="@string/sort_by_time"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_restore_black"/>
+</menu>
