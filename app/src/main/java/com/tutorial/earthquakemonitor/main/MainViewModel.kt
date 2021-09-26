@@ -23,20 +23,26 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         get() = _eqList
 
     init {
-        reloadEarthquakes(false)
+        reloadEarthquakes (false)
     }
 
-    fun reloadEarthquakes(sortByMagnitude: Boolean) {
+    private fun reloadEarthquakes(sortByMagnitude: Boolean) {
         viewModelScope.launch {
             try {
                 _status.value = ApiResponseStatus.LOADING
-                _eqList.value = repository.fetchEarthquake()
+                _eqList.value = repository.fetchEarthquake(sortByMagnitude)
                 _status.value = ApiResponseStatus.DONE
 
             } catch (e: UnknownHostException) {
                 _status.value = ApiResponseStatus.NO_INTERNET_CONNECTION
                 Log.d(TAG, "No internet connection.", e)
             }
+        }
+    }
+
+    fun reloadEarthquakesFromDb(sortByMagnitude: Boolean) {
+        viewModelScope.launch {
+            _eqList.value = repository.fetchEarthquakeFromDb(sortByMagnitude)
         }
     }
 }
